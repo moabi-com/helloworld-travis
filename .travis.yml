@@ -1,0 +1,6 @@
+# Travis CI pipeline demo : integration with the MOABI REST API
+language: c
+jobs:
+  include:
+    - stage: build
+      script: make
