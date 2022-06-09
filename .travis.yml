@@ -23,9 +23,9 @@ jobs:
       - MOABIRESULTS=`cat moabi.status.json| tr ',' "\n" | grep KPIsStatus |awk -F "\:" '{print $2}'|tr -d '"'`
       - echo "RESULTS ${MOABIRESULTS}"
       - if [ $MOABIRESULTS == "PASS" ] ; then
-      - echo "Build successful"
-      - else
-      - echo "Build failed"
-      - exit -1
-      - fi
+       echo "Build successful"
+      else
+       echo "Build failed"
+       exit -1
+      fi
       - echo "Tests complete."
