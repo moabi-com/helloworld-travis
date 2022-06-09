@@ -13,7 +13,7 @@ jobs:
       - echo "UUID ${BINARYID}"
       - echo "Waiting on ${BINARYID}"
       - MOABISTATUS="INITIAL"
-      - while [ "$MOABISTATUS" != "SCANNED" ] ; do sleep 60 ;  curl -X "GET" "https://${moabi_host}/api/uploads/${BINARYID}" -H "accept:application/ld+json" -H "apikey:${moabi_api_key}" -o moabi.status.json ; MOABISTATUS="$(cat moabi.status.json| tr ',' "\n" | grep status |awk -F "\:" '{print $2}'|tr -d '"')" ; echo "CURRENT STATUS '${MOABISTATUS}'" ; done
+      - while [ "$MOABISTATUS" != "SCANNED" ] ; do sleep 60 ;  curl -X "GET" "https://${moabi_host}/api/uploads/${BINARYID}" -H "accept:application/ld+json" -H "apikey:${moabi_api_key}" -o moabi.status.json ; MOABISTATUS="$(cat moabi.status.json| tr ',' "\n" | grep status |awk -F ":" '{print $2}'|tr -d '"')" ; echo "CURRENT STATUS '${MOABISTATUS}'" ; done
       - echo "analysis performed"
       - MOABIRESULTS=`cat moabi.status.json| tr ',' "\n" | grep KPIsStatus |awk -F ":" '{print $2}'|tr -d '"'`
       - echo "RESULTS ${MOABIRESULTS}"
